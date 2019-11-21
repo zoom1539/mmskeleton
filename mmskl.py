@@ -7,6 +7,10 @@ import torch
 import mmskeleton
 from mmcv import Config
 from mmskeleton.utils import call_obj, set_attr, get_attr
+
+import multiprocessing
+multiprocessing.set_start_method('spawn', True)
+
 """ Configuration Structure
 
 argparse_cfg:

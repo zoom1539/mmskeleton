@@ -38,7 +38,7 @@ def build(detection_cfg,
           out_dir,
           gpus=1,
           worker_per_gpu=1,
-          video_max_length=10000,
+          video_max_length=60,
           category_annotation=None):
 
     cache_checkpoint(detection_cfg.checkpoint_file)

@@ -12,10 +12,10 @@ def import_obj(type):
     try:
         __import__(mod_str)
         return getattr(sys.modules[mod_str], class_str)
-    except ModuleNotFoundError:
+    except ImportError:
         if type[0:11] != 'mmskeleton.':
             return import_obj('mmskeleton.' + type)
-        raise ModuleNotFoundError('Object {} cannot be found in {}.'.format(
+        raise ImportError('Object {} cannot be found in {}.'.format(
             class_str, mod_str))
 
 
