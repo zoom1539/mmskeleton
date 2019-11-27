@@ -40,6 +40,8 @@ def build(detection_cfg,
           worker_per_gpu=1,
           video_max_length=60,
           category_annotation=None):
+    if isinstance(detection_cfg, dict):
+        print(detection_cfg.checkpoint_file)
 
     cache_checkpoint(detection_cfg.checkpoint_file)
     cache_checkpoint(estimation_cfg.checkpoint_file)

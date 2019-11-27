@@ -2,23 +2,23 @@ import os
 import numpy as np
 import torch
 import mmcv
-from mmskeleton.datasets.utils.video_demo import VideoDemo
+from .video_demo import VideoDemo
 from mmskeleton.utils import get_mmskeleton_url
 from mmdet.apis import init_detector, inference_detector
 from mmskeleton.processor.apis import init_twodimestimator, inference_twodimestimator
 
 
 def init_pose_estimator(detection_cfg, estimation_cfg, device=None):
-    detection_model_file = detection_cfg.model_cfg
+    detection_model_file = detection_cfg['model_cfg']
 
     detection_checkpoint_file = get_mmskeleton_url(
-        detection_cfg.checkpoint_file)
+        detection_cfg['checkpoint_file'])
     detection_model = init_detector(detection_model_file,
                                     detection_checkpoint_file,
                                     device='cpu')
 
-    skeleton_model_file = estimation_cfg.model_cfg
-    skeletion_checkpoint_file = estimation_cfg.checkpoint_file
+    skeleton_model_file = estimation_cfg['model_cfg']
+    skeletion_checkpoint_file = estimation_cfg['checkpoint_file']
     skeleton_model = init_twodimestimator(skeleton_model_file,
                                           skeletion_checkpoint_file,
                                           device='cpu')
@@ -37,12 +37,12 @@ def inference_pose_estimator(pose_estimator, image):
     detection_model, skeleton_model, detection_cfg, estimation_cfg = pose_estimator
     bbox_result = inference_detector(detection_model, image)
     person_bbox, labels = VideoDemo.bbox_filter(bbox_result,
-                                                detection_cfg.bbox_thre)
+                                                detection_cfg['bbox_thre'])
     if len(person_bbox) > 0:
         has_return = True
         person, meta = VideoDemo.skeleton_preprocess(image[:, :, ::-1],
                                                      person_bbox,
-                                                     estimation_cfg.data_cfg)
+                                                     estimation_cfg['data_cfg'])
         preds, maxvals = inference_twodimestimator(skeleton_model,
                                                    person.cuda(), meta, True)
 

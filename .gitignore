@@ -120,3 +120,4 @@ data
 *.json
 *.pth
 *.avi
+zmh/test.py
