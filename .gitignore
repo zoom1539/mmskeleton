@@ -121,3 +121,4 @@ data
 *.pth
 *.avi
 zmh/test.py
+zmh/work_dir/video.ts
