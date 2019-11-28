@@ -10,8 +10,8 @@ from mmskeleton.models.backbones import ST_GCN_18
 from mmskeleton.utils import load_checkpoint
 from zmh.processor import init_pose_estimator, inference_pose_estimator
 
-video_path = 'zmh/work_dir/test_concat.avi'
-video_result_path = 'zmh/work_dir/test_result.avi'
+video_path = 'zmh/work_dir/test1_concat.avi'
+video_result_path = 'zmh/work_dir/test1_result.avi'
 recognize_frame_num = 60
 keypoints_num = 17
 track_num = 1
@@ -108,8 +108,10 @@ def predict(model, data):
     max_id = np.argmax(score)
 
     action_name = ''
-    if score[max_id] > 0.7:
+
+    if score[max_id] > 0.7 and max_id != 0:
         action_name = actions[max_id]
+    
     return action_name, score[max_id]
 
 def render_frame(frame, pose, action_name, score):
@@ -121,14 +123,15 @@ def render_frame(frame, pose, action_name, score):
                 (255,0,0), 
                 5, 
                 cv2.LINE_AA)
-    cv2.putText(frame, 
-                str(score), 
-                (100,200), 
-                cv2.FONT_HERSHEY_SIMPLEX, 
-                2,
-                (255,0,0), 
-                5, 
-                cv2.LINE_AA)
+    if action_name != '':
+        cv2.putText(frame, 
+                    str(score), 
+                    (100,200), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 
+                    2,
+                    (255,0,0), 
+                    5, 
+                    cv2.LINE_AA)
     return frame
 
 def generate_video(result_frames, resolution):

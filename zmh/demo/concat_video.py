@@ -10,19 +10,17 @@ from mmskeleton.models.backbones import ST_GCN_18
 from mmskeleton.utils import load_checkpoint
 from zmh.processor import init_pose_estimator, inference_pose_estimator
 
-video_paths = ['/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A023_rgb.avi',
+video_paths = [ '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A024_rgb.avi',
                 '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A024_rgb.avi',
-                '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A025_rgb.avi',
                 '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A028_rgb.avi',
-                '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A042_rgb.avi',
+                '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A024_rgb.avi',
                 '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A043_rgb.avi',
-                '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A044_rgb.avi',
+                '/media/ubuntu/share/ntu_rgbd/nturgb+d_rgb/S010C001P007R001A024_rgb.avi',
                 ]
 
-video_path_result = 'zmh/work_dir/test_concat.avi'
+video_path_result = 'zmh/work_dir/test1_concat.avi'
 
 def generate_video(result_frames, fps, resolution):
-
     fourcc = cv2.VideoWriter_fourcc('M','J','P','G')  
     videoWriter = cv2.VideoWriter(video_path_result, fourcc, fps, resolution)  
     for frame in result_frames:
