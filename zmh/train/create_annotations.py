@@ -11,7 +11,7 @@ def read_filename_list(work_dir):
     file_dir = os.path.join(work_dir, 'video')
 
     file_names = os.listdir(file_dir)
-
+ 
     return file_names
 
 
