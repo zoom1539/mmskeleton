@@ -1,8 +1,8 @@
 processor_cfg:
   type: "processor.skeleton_dataset.build"
-  gpus: 8
+  gpus: 4
   worker_per_gpu: 2
-  video_dir: zmh/dataset/test/video
+  video_dir: zmh/dataset/test/video_sampled
   out_dir: "zmh/dataset/test/skeleton"
   category_annotation: zmh/dataset/test/annotation.json
   detection_cfg:
