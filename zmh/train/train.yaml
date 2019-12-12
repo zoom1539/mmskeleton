@@ -20,7 +20,7 @@ processor_cfg:
   model_cfg:
     type: 'models.backbones.ST_GCN_18'
     in_channels: 3
-    num_class: 3
+    num_class: 4
     edge_importance_weighting: True
     graph_cfg:
       layout: 'coco'
@@ -34,10 +34,10 @@ processor_cfg:
     - type: "datasets.DataPipeline"
       data_source:
         type: "datasets.SkeletonLoader"
-        data_dir: zmh/dataset/train/skeleton
+        data_dir: zmh/dataset/test/skeleton
         num_track: 1
         num_keypoints: 17
-        repeat: 20
+        repeat: 5
       pipeline:
         - {type: "datasets.skeleton.normalize_by_resolution"}
         - {type: "datasets.skeleton.mask_by_visibility"}
@@ -63,7 +63,7 @@ processor_cfg:
 
   # dataloader setting
   batch_size: 200
-  gpus: 8
+  gpus: 8 
 
   # optimizer setting
   optimizer_cfg:
