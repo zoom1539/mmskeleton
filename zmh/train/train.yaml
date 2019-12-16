@@ -34,7 +34,7 @@ processor_cfg:
     - type: "datasets.DataPipeline"
       data_source:
         type: "datasets.SkeletonLoader"
-        data_dir: zmh/dataset/test/skeleton
+        data_dir: zmh/dataset/train/skeleton
         num_track: 1
         num_keypoints: 17
         repeat: 5
